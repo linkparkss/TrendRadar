@@ -1,0 +1,276 @@
+{
+  "schema_version": 1,
+  "catalog_id": "fengcheng08_initial_failure_calibration",
+  "description": "丰城三期08首批潮流不收敛校准样本；按用户要求排除Case35。",
+  "baseline": {
+    "case_no": 24,
+    "case_name": "丰城三期08",
+    "expected_converged": true,
+    "result_timestamp": "2026/08/16 16:39:08",
+    "artifacts": {
+      "temp_root": "YOUR_PSASP_TEMP",
+      "result_archived": true
+    }
+  },
+  "samples": [
+    {
+      "sample_id": "FC08_GEN_PG_080",
+      "case_no": 37,
+      "case_name": "丰城三期08_发电机有功0.8",
+      "factor": "generator_pg_derating",
+      "expected_converged": false,
+      "expected_limit_warning": false,
+      "result_timestamp": "2026/08/16 22:29:29",
+      "changes": [
+        {
+          "table": "ls5_37",
+          "record_id": 3236,
+          "device_name": "赣丰城三期08-8",
+          "field": "Pg",
+          "before": 10.0,
+          "after": 8.0,
+          "ratio": 0.8
+        }
+      ],
+      "observed_result": {
+        "calculate": -1,
+        "lf_cal_first_line": "-1, 0",
+        "lfcal_marker": "潮流计算不收敛"
+      },
+      "artifacts": {
+        "temp_root": "YOUR_PSASP_TEMP",
+        "case_result_archived": false,
+        "note": "当前Temp结果文件与本样本时间一致；后续样本运行会覆盖这些文件。"
+      }
+    },
+    {
+      "sample_id": "FC08_LCC_YALUO_500",
+      "case_no": 36,
+      "case_name": "丰城三期08_雅湖500万",
+      "factor": "lcc_dc_power_derating",
+      "expected_converged": false,
+      "expected_limit_warning": false,
+      "result_timestamp": "2026/08/16 22:23:53",
+      "changes": [
+        {
+          "table": "ls_lcc_36",
+          "record_id": 39,
+          "device_name": "川雅砻江500DCSIDE_正极",
+          "field": "GivenDCPower_High",
+          "before": 3250.0,
+          "after": 2500.0,
+          "ratio": 0.7692307692
+        },
+        {
+          "table": "ls_lcc_36",
+          "record_id": 40,
+          "device_name": "川雅砻江500DCSIDE_负极",
+          "field": "GivenDCPower_High",
+          "before": 3250.0,
+          "after": 2500.0,
+          "ratio": 0.7692307692
+        }
+      ],
+      "observed_result": {
+        "calculate": -1,
+        "interpretation": "数据库原始字段3250→2500，对应用户描述的650万→500万比例。"
+      },
+      "artifacts": {
+        "temp_root": "YOUR_PSASP_TEMP",
+        "case_result_archived": false
+      }
+    },
+    {
+      "sample_id": "FC08_GEN_OUTAGE_LARGE",
+      "case_no": 34,
+      "case_name": "丰城三期08_停运发电机赣丰城三期08-8",
+      "factor": "generator_outage",
+      "expected_converged": false,
+      "expected_limit_warning": false,
+      "result_timestamp": "2026/08/16 21:35:07",
+      "changes": [
+        {
+          "table": "ls5_34",
+          "record_id": 3236,
+          "device_name": "赣丰城三期08-8",
+          "field": "Valid",
+          "before": 1,
+          "after": 0
+        }
+      ],
+      "observed_result": {
+        "calculate": -1
+      },
+      "artifacts": {
+        "temp_root": "YOUR_PSASP_TEMP",
+        "case_result_archived": false
+      }
+    },
+    {
+      "sample_id": "FC08_PRACTICE_1",
+      "case_no": 38,
+      "case_name": "练习1",
+      "factor": "generator_outage",
+      "expected_converged": false,
+      "expected_limit_warning": false,
+      "result_timestamp": "2026/08/17 17:52:24",
+      "changes": [
+        {
+          "table": "ls5_38",
+          "record_id": 3807,
+          "device_name": "赣丰城01-1",
+          "field": "Valid",
+          "before": 1,
+          "after": 0
+        },
+        {
+          "table": "ls5_38",
+          "record_id": 4213,
+          "device_name": "赣井冈二期01-1",
+          "field": "Valid",
+          "before": 1,
+          "after": 0
+        }
+      ],
+      "observed_result": {
+        "calculate": -1,
+        "lf_cal_first_line": "-1, 0",
+        "diagnosis": "Case24到Case38的全输入表字段差异扫描仅发现两台发电机Valid由1变为0"
+      },
+      "confirmed_recovery": {
+        "verification_source": "psasp_gui_ordinary_load_flow",
+        "verified_at": "2026/08/17 22:51:19",
+        "status": "converged_without_balance_limit_violation",
+        "action_keys": [
+          "ls5_38:3807:Valid",
+          "ls5_38:4213:Valid"
+        ],
+        "run_dir": "YOUR_CONVERGENCE_RUNS/SAMPLE_FC08_PRACTICE_1_20260817_224212"
+      },
+      "rejected_recoveries": [
+        {
+          "verification_source": "psasp_gui_ordinary_load_flow",
+          "action_keys": [
+            "ls5_38:3807:Valid"
+          ],
+          "reason": "鄂三峡左平衡节点有功和无功越限",
+          "balance_limit_violations": [
+            {
+              "bus": "鄂三峡左#01",
+              "active_power": 12.2154,
+              "reactive_power": 3.7938,
+              "active_exceeded": true,
+              "reactive_exceeded": true
+            }
+          ]
+        },
+        {
+          "verification_source": "psasp_gui_ordinary_load_flow",
+          "action_keys": [
+            "ls5_38:4213:Valid"
+          ],
+          "reason": "鄂三峡左平衡节点有功越限",
+          "balance_limit_violations": [
+            {
+              "bus": "鄂三峡左#01",
+              "active_power": 8.5512,
+              "reactive_power": 2.626,
+              "active_exceeded": true,
+              "reactive_exceeded": false
+            }
+          ]
+        }
+      ],
+      "artifacts": {
+        "temp_root": "YOUR_PSASP_TEMP",
+        "case_result_archived": false
+      }
+    },
+    {
+      "sample_id": "PRACTICE_2",
+      "case_no": 39,
+      "case_name": "练习2",
+      "factor": "lcc_dc_power_uprating",
+      "expected_converged": false,
+      "expected_limit_warning": true,
+      "result_timestamp": "2026/08/17 23:08:47",
+      "reference_case": {
+        "case_no": 27,
+        "case_name": "外送450",
+        "expected_converged": true,
+        "selection_method": "operational_fingerprint_then_full_field_diff"
+      },
+      "changes": [
+        {
+          "table": "ls_lcc_39",
+          "record_id": 39,
+          "device_name": "川雅砻江500DCSIDE_正极",
+          "field": "GivenDCPower_High",
+          "before": 3250.0,
+          "after": 4000.0,
+          "ratio": 1.2307692308
+        },
+        {
+          "table": "ls_lcc_39",
+          "record_id": 40,
+          "device_name": "川雅砻江500DCSIDE_负极",
+          "field": "GivenDCPower_High",
+          "before": 3250.0,
+          "after": 4000.0,
+          "ratio": 1.2307692308
+        }
+      ],
+      "observed_result": {
+        "calculate": -1,
+        "lf_cal_first_line": "-1, 0",
+        "diagnosis": "自动基准排名选择Case27外送450；全输入表差异仅为雅砻江直流正负极功率由3250提高到4000",
+        "balance_limit_violations": [
+          {
+            "bus": "川溪洛渡左#01",
+            "active_power": 16.3053,
+            "reactive_power": -0.7568,
+            "active_exceeded": true,
+            "reactive_exceeded": false
+          },
+          {
+            "bus": "鄂三峡左#01",
+            "active_power": 37.6128,
+            "reactive_power": 55.7292,
+            "active_exceeded": true,
+            "reactive_exceeded": true
+          },
+          {
+            "bus": "闽后石G1-23",
+            "active_power": -7.4296,
+            "reactive_power": 1.0241,
+            "active_exceeded": true,
+            "reactive_exceeded": false
+          }
+        ]
+      },
+      "artifacts": {
+        "temp_root": "YOUR_PSASP_TEMP",
+        "case_result_archived": false
+      },
+      "confirmed_recovery": {
+        "verification_source": "psasp_gui_ordinary_load_flow",
+        "verified_at": "2026/08/17 23:22:52",
+        "status": "converged_without_balance_limit_violation",
+        "action_keys": [
+          "ls_lcc_39:39:GivenDCPower_High",
+          "ls_lcc_39:40:GivenDCPower_High"
+        ],
+        "atomic_action_group": true,
+        "reference_case_no": 27,
+        "run_dir": "YOUR_CONVERGENCE_RUNS/SAMPLE_PRACTICE_2_20260817_232007"
+      }
+    }
+  ],
+  "excluded_samples": [
+    {
+      "case_no": 35,
+      "case_name": "丰城三期08_停运发电机赣贵二期01-1",
+      "reason": "用户暂不纳入本轮校准"
+    }
+  ]
+}

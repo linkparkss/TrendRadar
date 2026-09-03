@@ -1,0 +1,50 @@
+# Copy to convergence.toml and replace the case/database values.
+[project]
+psasp_path = "D:/PSASP/PSASP7"
+temp_path = "D:/PSASP/Temp"
+run_root = "D:/PSASP/Temp/Convergence_runs"
+
+[database]
+host = "127.0.0.1"
+port = 3309
+user = "root"
+database = "your_psasp_database"
+password_env = "PSASP_DB_PASSWORD"
+charset = "latin1"
+
+[case]
+name = "your_case_name"
+case_no = 1
+
+[actions]
+generator_status = true
+shunt_status = true
+allow_start = true
+allow_stop = false
+generator_voltage = false
+transformer_tap = false
+load_shedding = false
+
+[search]
+max_changed_devices = 2
+max_attempts = 100
+combination_pool_size = 20
+prefer_local_devices = true
+same_station_pairing = true
+
+[adaptive_load]
+enabled = true
+initial_increases = [0.40, 0.60]
+expansion_increases = [0.80, 1.00, 1.20, 1.50, 2.00]
+minimum_bracket_width = 0.025
+
+[verification]
+require_fresh_lf_cal = true
+require_fresh_lfcal = true
+require_case_status = true
+require_fresh_lp1 = false
+timestamp_slack_seconds = 3.0
+
+[executor]
+mode = "manual_psasp"
+reload_instruction = "关闭 PSASP 且不要保存旧内存数据；重新打开工程，刷新/选择目标作业，运行普通潮流，保存计算结果后关闭 PSASP。"

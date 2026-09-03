@@ -1,0 +1,50 @@
+{
+  "catalog_id": "fengcheng08_initial_failure_calibration",
+  "baseline": {
+    "case_no": 24,
+    "case_name": "丰城三期08",
+    "expected_converged": true,
+    "result_timestamp": "2026/08/16 16:39:08",
+    "artifacts": {
+      "temp_root": "YOUR_PSASP_TEMP",
+      "result_archived": true
+    }
+  },
+  "included_sample_ids": [
+    "FC08_GEN_PG_080",
+    "FC08_LCC_YALUO_500",
+    "FC08_GEN_OUTAGE_LARGE"
+  ],
+  "excluded_samples": [
+    {
+      "case_no": 35,
+      "case_name": "丰城三期08_停运发电机赣贵二期01-1",
+      "reason": "用户暂不纳入本轮校准"
+    }
+  ],
+  "sample_count": 3,
+  "failure_factor_counts": {
+    "generator_pg_derating": 1,
+    "lcc_dc_power_derating": 1,
+    "generator_outage": 1
+  },
+  "all_included_samples_observed_nonconverged": true,
+  "changed_fields": [
+    "GivenDCPower_High",
+    "Pg",
+    "Valid"
+  ],
+  "action_space_gaps": [
+    {
+      "field": "Pg",
+      "status": "diagnostic_only",
+      "reason": "current Valid-only searcher does not write generator active power"
+    },
+    {
+      "field": "GivenDCPower_High/Low",
+      "status": "diagnostic_only",
+      "reason": "LCC setpoint action needs explicit bounds, step and rollback policy"
+    }
+  ],
+  "recommendation": "Use this catalog to calibrate diagnosis and candidate-family priors. Do not enable Pg or LCC setpoint writes until successful recovery labels and bounds are recorded."
+}

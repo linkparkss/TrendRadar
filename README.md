@@ -45,6 +45,21 @@
 
 > 本项目以轻量，易部署为目标
 
+## ⚡ 潮流自动收敛工具
+
+本仓库新增的 PSASP 潮流自动收敛工具位于 [`powerflow-convergence/`](powerflow-convergence/)，各程序用途如下：
+
+| 程序 | 用途 |
+| --- | --- |
+| [`潮流收敛.py`](powerflow-convergence/潮流收敛.py) | 统一入口：执行传统并联补偿最少投切搜索，或转入配置化的自动恢复、基线包和生成样本流程。 |
+| [`潮流收敛_数据库同步版.py`](powerflow-convergence/潮流收敛_数据库同步版.py) | 将 PSASP 数据库字段与 Temp 输入同步，调用 `wmlfadj.exe`，验证结果并在失败时回滚。 |
+| [`潮流收敛_自动训练版.py`](powerflow-convergence/潮流收敛_自动训练版.py) | 按已标注样本执行恢复规则；支持只读预览、运行和按 `run_dir` 精确恢复。 |
+| [`潮流收敛_样本回放.py`](powerflow-convergence/潮流收敛_样本回放.py) | 先重放已标注的不收敛故障，再应用恢复动作并验证，失败时恢复原始 Temp 文件。 |
+| [`训练样本校准.py`](powerflow-convergence/训练样本校准.py) | 离线读取训练样本目录，生成诊断校准报告，不启动 PSASP。 |
+| [`通用潮流收敛.py`](powerflow-convergence/通用潮流收敛.py) | 兼容性启动器，转发到 `powerflow.convergence` 命令入口。 |
+
+完整说明：[powerflow-convergence/README.md](powerflow-convergence/README.md)
+
 <br>
 
 ## 📑 快速导航
