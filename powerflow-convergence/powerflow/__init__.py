@@ -1,2 +1,0 @@
-"""Power-system automation utilities."""
-

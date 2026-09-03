@@ -1,2 +1,0 @@
-# Required only for database-backed PSASP workflows
-pymysql>=1.1,<2
